@@ -1,7 +1,7 @@
 <script setup>
-import { ref, reactive } from 'vue'
-import emailjs from '@emailjs/browser'
-import ProjectCard from './components/ProjectCard.vue'
+import { ref, reactive } from 'vue';
+import emailjs from '@emailjs/browser';
+import ProjectCard from './components/ProjectCard.vue';
 // Estado da Categoria de Projetos
 const currentCategory = ref('vue')
 
@@ -10,12 +10,14 @@ const contactForm = reactive({
   name: '',
   subject: '',
   message: '',
+  email: ""
 })
 
 const clearForm = () => {
   contactForm.name = ''
   contactForm.subject = ''
   contactForm.message = ''
+  contactForm.email = ""
 }
 
 const handleEmailSend = () => {
@@ -27,6 +29,7 @@ const handleEmailSend = () => {
     from_name: contactForm.name,
     subject: contactForm.subject,
     message: contactForm.message,
+    email: contactForm.email,
     to_email: 'pedrojs.ol.daroza@gmail.com',
   }
 
@@ -44,10 +47,6 @@ const handleEmailSend = () => {
 
 <template>
   <div class="portfolio-wrapper">
-    <component is="style">
-      @import
-      url('https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@400;600;700&display=swap');
-    </component>
 
     <header class="header">
       <h1 class="logo">
@@ -186,6 +185,10 @@ const handleEmailSend = () => {
             <div class="field">
               <label>Nome:</label>
               <input v-model="contactForm.name" type="text" required />
+            </div>
+            <div class="field">
+              <label>Email:</label>
+              <input v-model='contactForm.email' type="email" required>
             </div>
             <div class="field">
               <label>Assunto:</label>
